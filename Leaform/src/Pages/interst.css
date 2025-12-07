@@ -1,0 +1,76 @@
+.radio{
+    display:flex;
+    align-items: center;
+    margin-top: 1%;
+}
+.feild-radio{
+    margin-top: 3%;
+}
+.feild-radio input{
+    max-width: fit-content;
+    align-items: center;
+}
+.pass{
+   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    background-color: rgba(201, 9, 9, 0.334);
+    border-radius: 25px;
+    padding: 10px;
+    margin-top: 2%;
+    max-width: 40%;
+}
+.errore {
+  color: red;
+  font-size: 12px;
+}
+.feild input{
+    margin-right:1%;
+    margin-left: 1%;
+    margin-top: 1%;
+    width: 75%;
+    padding: 10px;
+    align-items: center;
+}
+
+.password-conditions {
+  list-style: none;
+  padding-left: 0;
+  margin-top: 5px;
+  box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+  padding: 5px;
+  margin-top: 3%;
+  border-radius: 25px;
+}
+.password-conditions li{
+    padding: 2px;
+    margin: 1%;
+}
+.password-conditions li::before {
+  content: "✗"; 
+  margin-right: 6px;
+  color: red;
+}
+
+.password-conditions li[style*="green"]::before {
+  content: "✓"; 
+  color: green;
+}
+.btnn {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  font-size: 16px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.btnn:hover:not(:disabled) {
+  background-color: #0056b3;
+}
+
+.btnn:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
