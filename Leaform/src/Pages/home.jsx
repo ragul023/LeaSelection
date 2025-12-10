@@ -13,7 +13,7 @@ function Home(){
         <img src="/src/assets/Tamilnadu-Government-Color.png" alt="" height={"300px"} width={"400px"}/>
         
          <div id="but">
-           <Link to='/det' className="but">Register</Link>
+           <Link to='/form/details' className="but">Register</Link>
          </div>
       
       </div>

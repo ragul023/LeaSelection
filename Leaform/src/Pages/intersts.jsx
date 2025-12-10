@@ -20,15 +20,15 @@ function Intersts({ formData, updateForm, errors, onSubmitFinal, submitting }) {
     }
   };
 
-  // helper used to compute if the submit button should be enabled
+
   const isFormValid = () => {
-    // basic: no errors and required fields filled
+
     const requiredFields = ['address', 'apartment', 'city', 'state', 'pincode', 'caste', 'secretKey'];
     for (const field of requiredFields) {
       if (!formData[field]) return false;
       if (errors && errors[field]) return false;
     }
-    // password conditions
+
     for (const condition of conditions) {
       if (!condition.test(formData.secretKey || "")) return false;
     }

@@ -9,14 +9,14 @@ const DRAFT_KEY = "myFormDraft_v1";
 export default function MultiStepForm() {
   const navigate = useNavigate();
 
-  // Combined form data (page1 + page2)
+
   const [formData, setFormData] = useState(() => {
     try {
       const saved = localStorage.getItem(DRAFT_KEY);
       if (saved) return JSON.parse(saved);
     } catch (e) { /* ignore */ }
     return {
-      // Page1 fields
+
       name: "",
       email: "",
       phone: "",
@@ -24,7 +24,7 @@ export default function MultiStepForm() {
       website: "",
       mark: "",
       subscribe: false,
-      // Page2 fields
+
       address: "",
       apartment: "",
       city: "",
@@ -40,7 +40,7 @@ export default function MultiStepForm() {
   const [errors, setErrors] = useState({});
   const [submitting, setSubmitting] = useState(false);
 
-  // persist draft to localStorage (debounce not implemented for brevity)
+
   useEffect(() => {
     try {
       // We cannot store File objects in localStorage; omit marksheet when saving draft

@@ -76,7 +76,7 @@ const server = http.createServer((req, res) => {
     });
   }
 
-  // POST /submit — NOW USING FORMIDABLE
+ //submit
   if (req.url === "/submit" && req.method === "POST") {
     const form = formidable({
       uploadDir: UPLOAD_DIR,
@@ -142,7 +142,9 @@ const server = http.createServer((req, res) => {
         }
 
         res.writeHead(200, { "Content-Type": "application/json" });
+        console.log(insertId);
         return res.end(JSON.stringify({ ok: true, insertId }));
+
       });
     });
 

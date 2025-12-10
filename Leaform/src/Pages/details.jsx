@@ -4,7 +4,7 @@ import './details.css';
 import { useNavigate } from "react-router-dom";
 
 function Details({ formData, updateForm, errors, goToStep2 }) {
-  // handleChange now calls parent updateForm
+
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
 
@@ -23,7 +23,7 @@ function Details({ formData, updateForm, errors, goToStep2 }) {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    // parent validation is called via goToStep2
+
     goToStep2();
   };
 
