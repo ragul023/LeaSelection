@@ -208,11 +208,13 @@ export default function MultiStepForm() {
 
       if (!res.ok) {
         const txt = await res.text();
+        
         throw new Error(txt || "Server error");
       }
 
 
       clearDraft();
+      alert("Form was Submitted Successfully");
       console.log("Success")
     } catch (err) {
       console.error("submit error:", err);

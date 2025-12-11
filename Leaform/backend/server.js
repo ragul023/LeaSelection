@@ -142,7 +142,7 @@ const server = http.createServer((req, res) => {
         }
 
         res.writeHead(200, { "Content-Type": "application/json" });
-        console.log(insertId);
+        
         return res.end(JSON.stringify({ ok: true, insertId }));
 
       });

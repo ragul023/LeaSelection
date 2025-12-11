@@ -20,7 +20,10 @@
 }
 .errore {
   color: red;
-  font-size: 12px;
+  font-size: 13px;
+  display: block;
+  margin-left: 1%;
+  padding: 15px;
 }
 .feild input{
     margin-right:1%;
