@@ -1,6 +1,8 @@
 import Header from "../components/header";
 import Footer from "../components/footer";
+import './display.css';
 function Display(){
+    
 return(
     <>
         <Header/>
@@ -8,25 +10,6 @@ return(
         <div className="form1">
             <div className="">
                 <div className="lable">Strudent Name:</div>
-                <div className="value"></div>
-            </div>
-            <div className="">
-                <div className="lable">Strudent Email:</div>
-                <div className="value"></div>
-            </div>
-            <div className="">
-                <div className="lable">Strudent DOB:</div>
-                <div className="value"></div>
-            </div>
-            <div className="">
-                <div className="lable">Strudent Mark</div>
-                <div className="value"></div>
-            </div><div className="">
-                <div className="lable">Strudent Caste:</div>
-                <div className="value"></div>
-            </div>
-            <div className="">
-                <div className="lable">Strudent Phone Number:</div>
                 <div className="value"></div>
             </div>
             

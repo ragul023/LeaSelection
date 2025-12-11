@@ -65,13 +65,15 @@ const server = http.createServer((req, res) => {
 
   // GET /registrations (already working)
   if (req.url === "/registrations" && req.method === "GET") {
-    const sql = "SELECT * FROM registrations ORDER BY id DESC";
+    const sql = "select name,email,phone,dob from registrations;";
     return db.query(sql, (err, results) => {
       if (err) {
         res.writeHead(500, { "Content-Type": "application/json" });
         return res.end(JSON.stringify({ error: err.message }));
       }
       res.writeHead(200, { "Content-Type": "application/json" });
+      console.log(results)
+      console.log(JSON.stringify(results))
       return res.end(JSON.stringify(results));
     });
   }
