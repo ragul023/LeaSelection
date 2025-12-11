@@ -64,19 +64,51 @@ const server = http.createServer((req, res) => {
   }
 
   // GET /registrations (already working)
-  if (req.url === "/registrations" && req.method === "GET") {
-    const sql = "select name,email,phone,dob from registrations;";
-    return db.query(sql, (err, results) => {
-      if (err) {
-        res.writeHead(500, { "Content-Type": "application/json" });
-        return res.end(JSON.stringify({ error: err.message }));
-      }
-      res.writeHead(200, { "Content-Type": "application/json" });
-      console.log(results)
-      console.log(JSON.stringify(results))
-      return res.end(JSON.stringify(results));
-    });
+if (req.method === "GET" && req.url.startsWith("/registrations/")) {
+  const parts = req.url.split("/").filter(Boolean); 
+  const idStr = parts[1];
+
+  const id = parseInt(idStr, 10);
+  if (Number.isNaN(id)) {
+    res.writeHead(400, { "Content-Type": "application/json" });
+    return res.end(JSON.stringify({
+      ok: false,
+      error: "Invalid id"
+    }));
   }
+
+  const sql = "select name,email,phone,dob from registrations WHERE id = ?";
+  db.query(sql, [id], (err, results) => {
+    if (err) {
+      console.error("DB select error:", err);
+      res.writeHead(500, { "Content-Type": "application/json" });
+      return res.end(JSON.stringify({
+        ok: false,
+        error: "Database error"
+      }));
+    }
+
+    if (!results || results.length === 0) {
+      res.writeHead(404, { "Content-Type": "application/json" });
+      return res.end(JSON.stringify({
+        ok: false,
+        message: "Registration not found"
+      }));
+    }
+
+    // Convert RowDataPacket → plain JSON object
+    const cleanData = JSON.parse(JSON.stringify(results[0]));
+
+    res.writeHead(200, { "Content-Type": "application/json" });
+    return res.end(JSON.stringify({
+      ok: true,
+      data: cleanData
+    }));
+  });
+
+  return;
+}
+
 
  //submit
   if (req.url === "/submit" && req.method === "POST") {
@@ -145,7 +177,7 @@ const server = http.createServer((req, res) => {
 
         res.writeHead(200, { "Content-Type": "application/json" });
         
-        return res.end(JSON.stringify({ ok: true, insertId }));
+        return res.end(JSON.stringify({ ok: true, id: insertId }));
 
       });
     });

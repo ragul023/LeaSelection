@@ -7,6 +7,7 @@ import Intersts from "./intersts";
 const DRAFT_KEY = "myFormDraft_v1";
 
 export default function MultiStepForm() {
+  const [insertid,setinsertid]=useState(0);
   const navigate = useNavigate();
 
 
@@ -173,56 +174,74 @@ export default function MultiStepForm() {
 
 
   const handleFinalSubmit = async (e) => {
-    e?.preventDefault?.();
-   
-    const ok1 = validateStep1();
-    const ok2 = validateStep2();
-    if (!ok1 || !ok2) return;
+  e?.preventDefault?.();
 
-    setSubmitting(true);
-    try {
-      const payload = new FormData();
+  // validate both steps
+  const ok1 = validateStep1();
+  const ok2 = validateStep2();
+  if (!ok1 || !ok2) return;
 
-      payload.append("name", formData.name || "");
-      payload.append("email", formData.email || "");
-      payload.append("phone", formData.phone || "");
-      payload.append("dob", formData.dob || "");
-      payload.append("website", formData.website || "");
-      payload.append("mark", String(formData.mark || ""));
-      payload.append("subscribe", formData.subscribe ? "1" : "0");
-      payload.append("address", formData.address || "");
-      payload.append("apartment", formData.apartment || "");
-      payload.append("city", formData.city || "");
-      payload.append("state", formData.state || "");
-      payload.append("pincode", String(formData.pincode || ""));
-      payload.append("caste", formData.caste || "");
-      payload.append("secret_key", formData.secretKey || "");
-      payload.append("reviewLevel", String(formData.reviewLevel || 50));
-      if (formData.marksheet) payload.append("marksheet", formData.marksheet);
+  setSubmitting(true);
+  try {
+    const payload = new FormData();
+    payload.append("name", formData.name || "");
+    payload.append("email", formData.email || "");
+    payload.append("phone", formData.phone || "");
+    payload.append("dob", formData.dob || "");
+    payload.append("website", formData.website || "");
+    payload.append("mark", String(formData.mark || ""));
+    payload.append("subscribe", formData.subscribe ? "1" : "0");
+    payload.append("address", formData.address || "");
+    payload.append("apartment", formData.apartment || "");
+    payload.append("city", formData.city || "");
+    payload.append("state", formData.state || "");
+    payload.append("pincode", String(formData.pincode || ""));
+    payload.append("caste", formData.caste || "");
+    // IMPORTANT: server expects `secretKey` (camelCase)
+    payload.append("secretKey", formData.secretKey || "");
+    payload.append("reviewLevel", String(formData.reviewLevel ?? 50));
+    if (formData.marksheet) payload.append("marksheet", formData.marksheet);
 
-      const res = await fetch("http://localhost:3000/submit", {
-        method: "POST",
-        body: payload
-
-      });
-
-      if (!res.ok) {
-        const txt = await res.text();
-        
-        throw new Error(txt || "Server error");
-      }
+    const res = await fetch("http://localhost:3000/submit", {
+      method: "POST",
+      body: payload,
+    });
 
 
-      clearDraft();
-      alert("Form was Submitted Successfully");
-      console.log("Success")
-    } catch (err) {
-      console.error("submit error:", err);
-      alert("Submit failed: " + (err.message || ""));
-    } finally {
-      setSubmitting(false);
+    const result = await res.json().catch(() => null);
+
+    if (!res.ok) {
+
+      const msg = (result && (result.error || result.message)) || `Server error ${res.status}`;
+      throw new Error(msg);
     }
-  };
+
+
+    if (!result || result.ok !== true || !result.id) {
+      throw new Error("Unexpected server response");
+    }
+
+    const newId = result.id;
+
+
+    setinsertid(newId);
+
+
+    clearDraft();
+
+    alert("Form submitted successfully");
+
+
+    navigate("/display", { state: { userid: newId } });
+
+  } catch (err) {
+    console.error("submit error:", err);
+    alert("Submit failed: " + (err.message || ""));
+  } finally {
+    setSubmitting(false);
+  }
+};
+
 
   return (
     <Routes>
