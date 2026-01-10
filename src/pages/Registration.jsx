@@ -1,4 +1,4 @@
-
+import { useState } from 'react'
 import Countdown from 'react-countdown'
 import Applicationfeild from '../Components/applicationfeild'
 import Header from '../Components/header'
@@ -17,34 +17,38 @@ const Registration = () => {
     </span>
   );
 };
+ const[formData, setFormData] = useState({});
+  const handleChange = (name, value) => {
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
   const list = [
     {
       title:"Applicant's Name",
-      inputtype:"text"
+      inputtype:"text",
+      tamil:"(வின்னப்பதராரின் பெயர்)"
     },
     {
       title:"Email ID", 
-      inputtype:"email"
+      inputtype:"email",
+      tamil:"(மின்னஞல் முகவரி)"
     },
     {
       title:"Mobile number",
-      inputtype:"text"
+      inputtype:"text",
+      tamil:"(கைபெசி என்)"
     },
     {
       title:"Password",
-      inputtype:"password"
+      inputtype:"password",
+      tamil:"(கடவுசொல்லை உல்லிடுக)"
     },
     {
       title:"Confirm Password",
-      inputtype:"password"
-    },
-        {
-      title:"Confirm Password",
-      inputtype:"password"
-    },
-        {
-      title:"Confirm Password",
-      inputtype:"password"
+      inputtype:"password",
+      tamil:"(கடவுசொல்லை உருதிசெய்க)"
     }
   ]
   return (
@@ -68,7 +72,12 @@ const Registration = () => {
                   <form action="">
                     {
                       list.map((item)=>(
-                        <Applicationfeild key={item.index} title={item.title} inputtype={item.inputtype}/>
+                        <Applicationfeild key={item.index}
+                         title={item.title}
+                          tamil={item.tamil}
+                           inputtype={item.inputtype}
+                           value={formData[item.inputtype]}
+                           onchange={handleChange}/>
                       ))
                     }
 
