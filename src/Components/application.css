@@ -1,0 +1,19 @@
+.feild{
+    display: flex;
+    justify-content: stretch;
+    align-items: center;
+    padding: 25px;
+    gap: 35%;
+}
+.next{
+    border: 2px solid #3ed03e5d;
+    box-shadow: 0 0 6px #475448;
+    padding: 9px;
+    min-width: 30%;
+}
+.det{
+    min-width: 18%;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 600;
+    margin-left: 10%;
+}

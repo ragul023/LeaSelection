@@ -1,0 +1,31 @@
+.space{
+    margin-top: 2%;
+    margin-left:5% ;
+    margin-right: 5%;
+    background-color: #f5f9fa;
+    margin-bottom: 2%;
+    border: 2px solid rgba(99, 99, 99, 0.179);
+    overflow: auto;
+    max-height: 600px;  
+    
+}
+.spacehead{
+    display: flex;
+    justify-content: space-between;
+    background-color: #fff;
+    padding: 15px;
+
+    border-bottom: 2px solid rgba(99, 99, 99, 0.179);  
+}
+
+.spacetitle {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 1px;
+    
+}
+.count span{
+    margin-left: 3px;
+    color: #cf334b;
+}
