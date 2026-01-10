@@ -7,7 +7,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 20px;
+    padding: 14px;
     gap: 15px;position: relative;
     border-bottom: 3px;
     border-style: solid;
@@ -23,11 +23,19 @@
     align-items: center;
 }
 .logo img{
-    width: 60px;
+    width: 50px;
     height: auto;
     
 }
 .logo{
     left: 120px;
     position: absolute;
+}
+.userlogo img{
+     width: 50px;
+    height: auto;
+}
+.userlogo{
+    position: absolute;
+    right: 120px;
 }

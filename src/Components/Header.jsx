@@ -1,5 +1,6 @@
 import './Header.css'
-import logo from '/src/assets/tn.png'
+import logo from '/src/assets/tnt.png'
+import userlogo from '/src/assets/userlea.svg'
 const Header = () => {
   return (
     <>
@@ -12,6 +13,9 @@ const Header = () => {
                 <span>GOVERNMENT OF TAMILNADU</span>
                 <span>Tamilnadu Lateral Entry District second Year B.E,/B.Tech.,Admissions - 2026</span>
                 </center></div>
+            <div className="userlogo">
+                <img src={userlogo} alt="user" />
+            </div>
         </div>
     </>
   )
