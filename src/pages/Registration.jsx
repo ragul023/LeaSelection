@@ -77,6 +77,19 @@ const Registration = () => {
     if (!Object.values(passwordRules).every(Boolean)) {
       newErrors.password = "Password does not meet all requirements";
     }
+    if (Object.keys(newErrors).length === 0) {
+      console.log("Form submitted:", formData);
+
+      setFormData({});
+      setErrors({});
+      setPasswordRules({
+        length: false,
+        uppercase: false,
+        lowercase: false,
+        number: false,
+        special: false,
+      });
+    }
   };
 
   const list = [
@@ -146,9 +159,13 @@ const Registration = () => {
               />
             ))}
             <center>
-            <button type="submit" className="blu">
-              Register
-            </button>
+              <button
+                className="blu"
+                type="submit"
+                disabled={!Object.values(passwordRules).every(Boolean)}
+              >
+                Register
+              </button>
             </center>
           </form>
         </div>

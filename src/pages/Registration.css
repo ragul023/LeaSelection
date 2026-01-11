@@ -29,3 +29,25 @@
     margin-left: 3px;
     color: #cf334b;
 }
+.blu {
+  margin: 24px auto;
+  padding: 12px 0;
+  width: 60%;
+  max-width: 600px;
+  background-color: #0175aa;
+  color: white;
+  font-weight: 500;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  display: block;
+}
+
+.blu:hover {
+  background-color: #01628f;
+}
+
+.blu:disabled {
+  background-color: #9bbccc;
+  cursor: not-allowed;
+}
