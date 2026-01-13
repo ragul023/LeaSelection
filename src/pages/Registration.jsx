@@ -48,7 +48,7 @@ const Registration = () => {
     );
   };
   const [errors, setErrors] = useState({});
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     const newErrors = {};
@@ -61,25 +61,47 @@ const Registration = () => {
       newErrors.email = "Enter a valid email";
     }
 
-    if (!/^[6-9]\d{9}$/.test(formData.phoneumber || "")) {
-      newErrors.phoneumber = "Enter a valid mobile number";
+    if (!/^[6-9]\d{9}$/.test(formData.mobilenumber || "")) {
+      newErrors.mobilenumber = "Enter a valid mobile number";
     }
 
     if (formData.password !== formData.confirmpassword) {
       newErrors.confirmpassword = "Passwords do not match";
     }
 
-    setErrors(newErrors);
-
-    if (Object.keys(newErrors).length === 0) {
-      console.log("Form submitted:", formData);
-    }
     if (!Object.values(passwordRules).every(Boolean)) {
       newErrors.password = "Password does not meet all requirements";
     }
-    if (Object.keys(newErrors).length === 0) {
-      console.log("Form submitted:", formData);
 
+    setErrors(newErrors);
+
+    if (Object.keys(newErrors).length !== 0) return;
+
+    // ✅ API CALL STARTS HERE
+    try {
+      const response = await fetch("http://localhost:3000/api/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          mobilenumber: formData.mobilenumber,
+          password: formData.password,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.message || "Registration failed");
+      }
+
+      console.log("API success:", data);
+      alert("Registration successful!");
+
+      // ✅ Reset form
       setFormData({});
       setErrors({});
       setPasswordRules({
@@ -89,6 +111,9 @@ const Registration = () => {
         number: false,
         special: false,
       });
+    } catch (error) {
+      console.error("API error:", error.message);
+      alert(error.message);
     }
   };
 
@@ -109,7 +134,7 @@ const Registration = () => {
       title: "Mobile number",
       inputtype: "text",
       tamil: "(கைபெசி என்)",
-      id: "phoneumber",
+      id: "mobilenumber",
     },
     {
       title: "Password",
