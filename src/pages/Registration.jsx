@@ -77,7 +77,6 @@ const Registration = () => {
 
     if (Object.keys(newErrors).length !== 0) return;
 
-    // ✅ API CALL STARTS HERE
     try {
       const response = await fetch("http://localhost:3000/api/register", {
         method: "POST",
@@ -100,8 +99,6 @@ const Registration = () => {
 
       console.log("API success:", data);
       alert("Registration successful!");
-
-      // ✅ Reset form
       setFormData({});
       setErrors({});
       setPasswordRules({

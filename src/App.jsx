@@ -1,16 +1,14 @@
-
-import Footer from './Components/Footer'
-import Header from './Components/header'
-import Registration from './pages/registration'
+import { BrowserRouter, Routes, Route } from "react-router";
+import Registration from "./pages/Registration";
 
 function App() {
-
-
   return (
-    <>
-      <Registration/>
-    </>
-  )
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Registration />} />
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
-export default App
+export default App;
