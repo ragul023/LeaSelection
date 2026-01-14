@@ -1,0 +1,99 @@
+.notificationcenter{
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+    padding: 10px;
+    width: 63.5%;
+    border-left: 5px solid #00796b;
+    min-height: 305px;
+    
+    
+}
+.notificationcenter h3{
+    padding: 0px 0px 10px;
+    margin: 0px 0px 15px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 24px;
+    border-bottom: 2px solid #0000001a;
+}
+.notificationcenter ul{
+    font-size: 16px;
+    font-family: Arial, Helvetica, sans-serif;
+    overflow-y: scroll;
+    max-height: 250px;
+    
+}
+.notificationcenter li{
+    margin: 2dvh .5dvh;
+    padding: 5px 0px;
+    color: red;
+    list-style: none;
+    gap: 2px;
+    align-items: center;
+    display: flex;
+    font-size: 1rem;
+    margin-bottom: 10px;
+}
+.quicklink{
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+    background-color: #fff;
+    border-right: 5px solid #7745ac;
+    height: 50%;
+    width: 25%;
+    padding: 10px;
+}
+.top{
+    align-items: flex-start;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-around;
+    margin: 20px 10px;
+}
+.quicklinklist{
+    overflow-y:auto ;
+    max-height: 250px;
+}
+.quicklinklist li{
+
+    cursor: pointer;
+    display: flex;
+    margin: 2dvh .5dvh;
+    padding: 1dvh .5dvh;
+}
+.quicklink h3{
+    border-bottom: 2px solid #0000001a ;
+    font-size: 24px;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 0px 0px 10px;
+    margin: 0px 0px 15px;
+}
+.hom{
+    align-items: center;
+    border-radius: 10px;
+    box-shadow: 0 1px 3px 0 #00000005, 0 0 0 1px #1b1f2326;
+    color: #00796b;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin: 10px 27.5px;
+}
+.links img {
+    height: 40px;
+    width: auto;
+
+}
+.links a{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: large;
+    gap:10px;
+    text-decoration: none;
+    color: #00796b;
+    font-weight: 600;
+    font-size: 16px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.links{
+    padding: 25px;
+}
