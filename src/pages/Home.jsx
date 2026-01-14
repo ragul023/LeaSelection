@@ -4,7 +4,7 @@ import Footer from "../Components/Footer";
 import { Navigate,Link, useNavigate } from 'react-router';
 
 const Home = () => {
-    const navigate=useNavigate();
+    
   return (
     <>
       <Header />

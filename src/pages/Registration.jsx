@@ -1,11 +1,13 @@
 import { useState } from "react";
 import Countdown from "react-countdown";
 import Applicationfeild from "../Components/applicationfeild";
-import Header from "../Components/header";
+import Header from "../Components/Header";
 import Footer from "../Components/Footer";
 import "./Registration.css";
+import { useNavigate } from "react-router";
 
 const Registration = () => {
+  const navigate = useNavigate();
   const [passwordRules, setPasswordRules] = useState({
     length: false,
     uppercase: false,
@@ -108,6 +110,9 @@ const Registration = () => {
         number: false,
         special: false,
       });
+      setTimeout(() => {
+        navigate("/home");
+      }, 1500);
     } catch (error) {
       console.error("API error:", error.message);
       alert(error.message);
