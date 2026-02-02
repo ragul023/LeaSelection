@@ -9,6 +9,7 @@ const Applicationfeild = ({
   id,
   error,
   passwordRules,
+  placeholder,
 }) => {
   return (
     <>
@@ -26,6 +27,7 @@ const Applicationfeild = ({
             id={id}
             autoComplete={id}
             onChange={(e) => onChange(id, e.target.value)}
+            placeholder={placeholder}
           />
 
           {id === "password" && passwordRules && (

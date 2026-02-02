@@ -1,4 +1,5 @@
 import "./Header.css";
+import { Link } from "react-router";
 import logo from "/src/assets/tnt.png";
 import userlogo from "/src/assets/userlea.svg";
 const Header = () => {
@@ -6,7 +7,9 @@ const Header = () => {
     <>
       <div className="header">
         <div className="logo">
-          <img src={logo} alt="TN logo" />
+          <Link to={"/"}>
+            <img src={logo} alt="TN logo" />
+          </Link>
         </div>
         <div className="title">
           <center>
@@ -18,7 +21,9 @@ const Header = () => {
           </center>
         </div>
         <div className="userlogo">
-          <img src={userlogo} alt="user" />
+          <Link to={"/register"}>
+            <img src={userlogo} alt="TN logo" />
+          </Link>
         </div>
       </div>
     </>

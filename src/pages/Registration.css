@@ -1,37 +1,41 @@
-.space{
-    margin-top: 2%;
-    margin-left:5% ;
-    margin-right: 5%;
-    background-color: #f5f9fa;
-    margin-bottom: 2%;
-    border: 2px solid rgba(99, 99, 99, 0.179);
-    overflow: auto;
-    max-height: 600px;  
-    
+.space {
+  margin: 2% 5%;
+  background-color: #f5f9fa;
+  border: 2px solid rgba(99, 99, 99, 0.179);
+  max-height: 600px;
+  overflow-y: auto;      /* ✅ only vertical scroll */
+  overflow-x: hidden;   /* ✅ kill right gap */
+  box-sizing: border-box;
 }
-.spacehead{
-    display: flex;
-    justify-content: space-between;
-    background-color: #fff;
-    padding: 15px;
 
-    border-bottom: 2px solid rgba(99, 99, 99, 0.179);  
+/* Header */
+.spacehead {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fff;
+  padding: 15px;
+  border-bottom: 2px solid rgba(99, 99, 99, 0.179);
+  flex-wrap: wrap; /* ✅ prevents overflow */
+  gap: 8px;
 }
 
 .spacetitle {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    gap: 1px;
-    
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 4px;
 }
-.count span{
-    margin-left: 3px;
-    color: #cf334b;
+
+.count span {
+  margin-left: 3px;
+  color: #cf334b;
 }
+
+/* Button */
 .blu {
   margin: 24px auto;
-  padding: 12px 0;
+  padding: 12px;
   width: 60%;
   max-width: 600px;
   background-color: #0175aa;
@@ -50,4 +54,34 @@
 .blu:disabled {
   background-color: #9bbccc;
   cursor: not-allowed;
+}
+
+/* ===================== */
+/* Tablet */
+@media (max-width: 768px) {
+  .space {
+    margin: 2% 3%;
+  }
+
+  .blu {
+    width: 80%;
+  }
+}
+
+/* ===================== */
+/* Mobile (320px FIX) */
+@media (max-width: 480px) {
+  .space {
+    margin: 10px;
+    max-height: none; /* ✅ allow natural scroll */
+  }
+
+  .spacehead {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .blu {
+    width: 100%;  /* ✅ no side gap */
+  }
 }
