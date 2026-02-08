@@ -17,19 +17,19 @@ const Registration = () => {
     special: false,
   });
   const validators = {
-  name: {
-    regex: /^[A-Za-z\s]{3,}$/,
-    message: "Enter a valid name",
-  },
-  email: {
-    regex: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-    message: "Enter a valid email",
-  },
-  mobilenumber: {
-    regex: /^[6-9]\d{9}$/,
-    message: "Enter a valid mobile number",
-  },
-};
+    name: {
+      regex: /^[A-Za-z\s]{3,}$/,
+      message: "Enter a valid name",
+    },
+    email: {
+      regex: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+      message: "Enter a valid email",
+    },
+    mobilenumber: {
+      regex: /^[6-9]\d{9}$/,
+      message: "Enter a valid mobile number",
+    },
+  };
 
   const checkPasswordRules = (password) => {
     setPasswordRules({
@@ -43,65 +43,58 @@ const Registration = () => {
 
   const [formData, setFormData] = useState({});
 
-const handleChange = (name, value) => {
-  setActiveField(name);
+  const handleChange = (name, value) => {
+    setActiveField(name);
 
-  setFormData((prev) => ({
-    ...prev,
-    [name]: value,
-  }));
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
 
-  if (name === "password") {
-    checkPasswordRules(value);
-  }
-};
-useEffect(() => {
-  if (!activeField) return;
-
-  const currentIndex = fieldIndexMap[activeField];
-
-  setErrors((prevErrors) => {
-    const newErrors = { ...prevErrors };
-    // const newErrors = prevErrors;
-
-   
-    for (let i = 0; i < currentIndex; i++) {
-      const prevFieldId = list[i].id;
-
-      if (!formData[prevFieldId]?.trim()) {
-  newErrors[prevFieldId] = "Required";
-} else {
-  
-  if (newErrors[prevFieldId] === "Required") {
-    newErrors[prevFieldId] = "";
-  }
-}
+    if (name === "password") {
+      checkPasswordRules(value);
     }
+  };
+  useEffect(() => {
+    if (!activeField) return;
 
+    const currentIndex = fieldIndexMap[activeField];
 
-    if (validators[activeField]) {
-      if (!validators[activeField].regex.test(formData[activeField] || "")) {
-        newErrors[activeField] = validators[activeField].message;
-      } else {
-        newErrors[activeField] = "";
+    setErrors((prevErrors) => {
+      const newErrors = { ...prevErrors };
+      // const newErrors = prevErrors;
+
+      for (let i = 0; i < currentIndex; i++) {
+        const prevFieldId = list[i].id;
+
+        if (!formData[prevFieldId]?.trim()) {
+          newErrors[prevFieldId] = "Required";
+        } else {
+          if (newErrors[prevFieldId] === "Required") {
+            newErrors[prevFieldId] = "";
+          }
+        }
       }
-    }
 
-
-    if (activeField === "confirmpassword") {
-      if (formData.confirmpassword !== formData.password) {
-        newErrors.confirmpassword = "Passwords do not match";
-      } else {
-        newErrors.confirmpassword = "";
+      if (validators[activeField]) {
+        if (!validators[activeField].regex.test(formData[activeField] || "")) {
+          newErrors[activeField] = validators[activeField].message;
+        } else {
+          newErrors[activeField] = "";
+        }
       }
-    }
 
-    return newErrors;
-  });
-}, [formData, activeField]);
+      if (activeField === "confirmpassword") {
+        if (formData.confirmpassword !== formData.password) {
+          newErrors.confirmpassword = "Passwords do not match";
+        } else {
+          newErrors.confirmpassword = "";
+        }
+      }
 
-
-
+      return newErrors;
+    });
+  }, [formData, activeField]);
 
   const countdownRenderer = ({ days, hours, minutes, seconds, completed }) => {
     if (completed) {
@@ -117,18 +110,15 @@ useEffect(() => {
   const [errors, setErrors] = useState({});
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const newErrors={};
+    const newErrors = {};
 
     if (Object.values(errors).some(Boolean)) return;
-
 
     if (!Object.values(passwordRules).every(Boolean)) {
       newErrors.password = "Password does not meet all requirements";
     }
 
     setErrors(newErrors);
-
-
 
     try {
       const response = await fetch("http://localhost:3000/api/register", {
@@ -176,41 +166,41 @@ useEffect(() => {
       inputtype: "text",
       tamil: "(வின்னப்பதராரின் பெயர்)",
       id: "name",
-      placeholder:"Enter Applicants Name"
+      placeholder: "Enter Applicants Name",
     },
     {
       title: "Email ID",
       inputtype: "email",
       tamil: "(மின்னஞல் முகவரி)",
       id: "email",
-      placeholder:"Enter Applicants Email"
+      placeholder: "Enter Applicants Email",
     },
     {
       title: "Mobile number",
       inputtype: "text",
       tamil: "(கைபெசி என்)",
       id: "mobilenumber",
-      placeholder:"Enter Applicants MobileNumber"
+      placeholder: "Enter Applicants MobileNumber",
     },
     {
       title: "Password",
       inputtype: "password",
       tamil: "(கடவுசொல்லை உல்லிடுக)",
       id: "password",
-      placeholder:"Enter Your Password"
+      placeholder: "Enter Your Password",
     },
     {
       title: "Confirm Password",
       inputtype: "password",
       tamil: "(கடவுசொல்லை உருதிசெய்க)",
       id: "confirmpassword",
-      placeholder:"Confirm Your Password"
+      placeholder: "Confirm Your Password",
     },
   ];
-const fieldIndexMap = list.reduce((acc, item, index) => {
-  acc[item.id] = index;
-  return acc;
-}, {});
+  const fieldIndexMap = list.reduce((acc, item, index) => {
+    acc[item.id] = index;
+    return acc;
+  }, {});
 
   return (
     <>

@@ -1,4 +1,4 @@
-// controllers/controller.js
+
 const bcrypt = require("bcrypt");
 const query = require("../model/queries");
 
