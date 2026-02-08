@@ -62,6 +62,7 @@ useEffect(() => {
 
   setErrors((prevErrors) => {
     const newErrors = { ...prevErrors };
+    // const newErrors = prevErrors;
 
    
     for (let i = 0; i < currentIndex; i++) {

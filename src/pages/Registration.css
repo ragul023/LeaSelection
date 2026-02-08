@@ -3,8 +3,8 @@
   background-color: #f5f9fa;
   border: 2px solid rgba(99, 99, 99, 0.179);
   max-height: 600px;
-  overflow-y: auto;      /* ✅ only vertical scroll */
-  overflow-x: hidden;   /* ✅ kill right gap */
+  overflow-y: auto;      
+  overflow-x: hidden;   
   box-sizing: border-box;
 }
 
@@ -16,7 +16,7 @@
   background-color: #fff;
   padding: 15px;
   border-bottom: 2px solid rgba(99, 99, 99, 0.179);
-  flex-wrap: wrap; /* ✅ prevents overflow */
+  flex-wrap: wrap; 
   gap: 8px;
 }
 
@@ -56,8 +56,7 @@
   cursor: not-allowed;
 }
 
-/* ===================== */
-/* Tablet */
+
 @media (max-width: 768px) {
   .space {
     margin: 2% 3%;
@@ -68,12 +67,12 @@
   }
 }
 
-/* ===================== */
-/* Mobile (320px FIX) */
+
+
 @media (max-width: 480px) {
   .space {
     margin: 10px;
-    max-height: none; /* ✅ allow natural scroll */
+    max-height: none; 
   }
 
   .spacehead {
@@ -82,6 +81,6 @@
   }
 
   .blu {
-    width: 100%;  /* ✅ no side gap */
+    width: 100%;  
   }
 }
